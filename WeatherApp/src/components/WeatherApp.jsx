@@ -13,8 +13,10 @@ const WeatherApp = () => {
   const [lat, setLat] = useState(null);
   const [lon, setLon] = useState(null);
   
-  const LOCATION_API_KEY = import.meta.env.VITE_LOCATION_API_KEY;
-  const limit = 1;
+  const LOCATION_API_KEY = import.meta.env.VITE_LOCATION_API_KEY || '6dced70317214a5b1b5ffc8257210d5d';
+  const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY || '996c3fd1f937b0f34b4e3274699c24b6';
+
+  const limit = 2;
 
 
   useEffect(() => {
@@ -27,15 +29,15 @@ const WeatherApp = () => {
       console.log(LOCATION_API_KEY);
 
       const result =
-        await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=6dced70317214a5b1b5ffc8257210d5d`);
+        await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=London&limit=${limit}&appid=${LOCATION_API_KEY}`);
       const resultJSON = await result.json();
       setLocationData(resultJSON);
-      console.log('Success! Status:', result.status);
+      //console.log('Success! Status:', result.status);
       console.log('JSON Results:', resultJSON);
       
       //setting lat and lon
-      setLat(resultJSON.lat);
-      setLon(resultJSON.lon);
+      setLat(resultJSON[0].lat);
+      setLon(resultJSON[0].lon);
 
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -43,15 +45,16 @@ const WeatherApp = () => {
   }
 
   //when they click search for location and set lat and lon 
-  const searchWeather = async (cityName, stateCode, countryCode) => {
+  const searchWeather = async () => {
     try {
-      console.log(LOCATION_API_KEY);
+      // console.log(WEATHER_API_KEY);
+      // console.log(lat);
 
       const result =
-        await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&appid=${VITE_LOCATION_API_KEY}`);
+        await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${LOCATION_API_KEY}`);
       const resultJSON = await result.json();
       setWeatherData(resultJSON);
-      console.log('Success! Status:', result.status);
+      //console.log('Success! Status:', result.status);
       console.log('JSON Results:', resultJSON);
       
       } catch (error) {
@@ -63,8 +66,7 @@ const WeatherApp = () => {
   //on click make api call to other thing using the data u got 
   const handleClick = () => {
     searchLocation(cityName, stateCode, countryCode); //should set lat and long 
-
-
+    searchWeather();
   };
 
 
