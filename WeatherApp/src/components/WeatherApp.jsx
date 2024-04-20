@@ -6,10 +6,10 @@ import WeeklyForecast from './WeeklyForecast'
 
 const WeatherApp = () => {
   const [locationData, setLocationData] = useState(null);
-  const [weatherData, setWeatherData] = useState(null);
-  const [cityName, setCityName] = useState(null);
-  const [stateCode, setStateCode] = useState(null);
-  const [countryCode, setCountryCode] = useState(null);
+  const [weatherData, setWeatherData] = useState('');
+  const [cityName, setCityName] = useState('');
+  const [stateCode, setStateCode] = useState('');
+  const [countryCode, setCountryCode] = useState('');
   const [lat, setLat] = useState(null);
   const [lon, setLon] = useState(null);
   
@@ -82,9 +82,14 @@ const WeatherApp = () => {
       <button className="search-button" onClick={handleClick}>
         Search
       </button>
-      <CurrentWeather data={weatherData} />
-      <HourlyForecast data={weatherData} />
-      <WeeklyForecast data={weatherData} />
+      {weatherData && ( //display if there is data 
+        <>
+          <CurrentWeather data={weatherData} />
+          <HourlyForecast data={weatherData} />
+          <WeeklyForecast data={weatherData} />
+        </>
+      )
+      }
 
 
     </>
