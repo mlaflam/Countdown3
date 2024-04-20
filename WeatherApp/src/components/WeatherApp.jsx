@@ -6,7 +6,7 @@ import WeeklyForecast from './WeeklyForecast'
 
 const WeatherApp = () => {
   const [locationData, setLocationData] = useState(null);
-  const [weatherData, setWeatherData] = useState('');
+  const [weatherData, setWeatherData] = useState(null);
   const [cityName, setCityName] = useState('');
   const [stateCode, setStateCode] = useState('');
   const [countryCode, setCountryCode] = useState('');
@@ -51,7 +51,7 @@ const WeatherApp = () => {
       // console.log(lat);
 
       const result =
-        await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${LOCATION_API_KEY}`);
+        await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=${LOCATION_API_KEY}`);
       const resultJSON = await result.json();
       setWeatherData(resultJSON);
       //console.log('Success! Status:', result.status);
@@ -66,24 +66,30 @@ const WeatherApp = () => {
   //on click make api call to other thing using the data u got 
   const handleClick = () => {
     searchLocation(cityName, stateCode, countryCode); //should set lat and long 
-    searchWeather();
+    searchWeather(); //then search for weather 
   };
 
 
   return (
     <>
-      <input
+      <div className='website-title'>
+        Weather App
+      </div>
+      <div className='search-container'>
+        <input
         id='city'
         className="city-box"
         type="text"
         placeholder="Enter City Name"
         value={cityName}
         onChange={(e) => setCityName(e.target.value)}
-      />
+        />
 
-      <button className="search-button" onClick={handleClick}>
-        Search
-      </button>
+        <button className="search-button" onClick={handleClick}>
+          Search
+        </button>
+      </div>
+  
       {weatherData && ( //display if there is data 
         <>
           <CurrentWeather data={weatherData} />
