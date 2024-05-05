@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import CurrentWeather from './CurrentWeather';
 import HourlyForecast from './HourlyForecast';
 import WeeklyForecast from './WeeklyForecast';
+import News from './News';
 
 const WeatherApp = () => {
   const [location, setLocation] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
   const [hourlyData, setHourlyData] = useState(null);
   const [dailyData, setDailyData] = useState(null);
+  const [newsData, setNewsData] = useState(null);
   const [cityName, setCityName] = useState('');
   const [stateCode, setStateCode] = useState('');
   const [countryCode, setCountryCode] = useState('');
@@ -16,6 +18,7 @@ const WeatherApp = () => {
   const [placeName, setPlaceName] = useState(null);
 
   const LOCATION_API_KEY = import.meta.env.VITE_LOCATION_API_KEY;
+  const NEWS_API_KEY = import.meta.env.VITE_NEWS_API_KEY;
   const limit = 2;
 
   const searchLocation = async () => {
@@ -24,18 +27,14 @@ const WeatherApp = () => {
       const resultJSON = await result.json();
       console.log('JSON Results:', resultJSON);
 
-      if (resultJSON.length > 0) {
-        const lat = parseFloat(resultJSON[0].lat).toFixed(2);
-        const lon = parseFloat(resultJSON[0].lon).toFixed(2);
-        const placeName = resultJSON[0].name;
-        setLat(lat);
-        setLon(lon);
-        setPlaceName(placeName);
-        setLocation(true);
-      } else {
-        console.error('No location data found.');
-        setLocation(false);
-      }
+      const lat = parseFloat(resultJSON[0].lat).toFixed(2);
+      const lon = parseFloat(resultJSON[0].lon).toFixed(2);
+      const placeName = resultJSON[0].name;
+      setLat(lat);
+      setLon(lon);
+      setPlaceName(placeName);
+      setLocation(true);
+      
     } catch (error) {
       console.error('Error fetching location:', error);
       setLocation(false);
@@ -56,7 +55,6 @@ const WeatherApp = () => {
       const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${LOCATION_API_KEY}`);
       const resultJSON = await result.json();
       setWeatherData(resultJSON);
-      console.log('JSON Results Weather:', resultJSON);
     } catch (error) {
       console.error('Error fetching weather data:', error);
     }
@@ -67,7 +65,6 @@ const WeatherApp = () => {
       const result = await fetch(`https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${lat}&lon=${lon}&appid=${LOCATION_API_KEY}`);
       const resultJSON = await result.json();
       setHourlyData(resultJSON);
-      console.log('JSON Results Hourly:', resultJSON);
     } catch (error) {
       console.error('Error fetching hourly data:', error);
     }
@@ -78,17 +75,29 @@ const WeatherApp = () => {
       const result = await fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&appid=${LOCATION_API_KEY}`);
       const resultJSON = await result.json();
       setDailyData(resultJSON);
-      console.log('JSON Results Daily:', resultJSON);
     } catch (error) {
       console.error('Error fetching daily data:', error);
     }
   };
+
+  const searchNews = async () => {
+    try {
+      const result = await fetch(`https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${NEWS_API_KEY}`);
+      const resultJSON = await result.json();
+      setNewsData(resultJSON);
+      console.log('JSON Results News:', resultJSON);
+    } catch (error) {
+      console.error('Error fetching news data:', error);
+    }
+  };
+
 
   const handleClick = async () => {
     if (cityName === "" && stateCode === "" && countryCode === "") {
       return;
     }
     await searchLocation(); // Wait for searchLocation to complete
+    await searchNews();
   };
 
   return (
@@ -129,11 +138,18 @@ const WeatherApp = () => {
         </button>
       </div>
 
-      {weatherData && hourlyData && dailyData && (
+      {weatherData && hourlyData && dailyData && newsData &&(
         <>
-          <CurrentWeather data={weatherData} cityName={placeName}/>
-          <HourlyForecast data={hourlyData} />
-          <WeeklyForecast data={dailyData} />
+          <CurrentWeather data={weatherData} cityName={placeName} />
+          <div className='lower-section-container'>
+            <div className='future-weather-container'>
+              <HourlyForecast data={hourlyData} />
+              <WeeklyForecast data={dailyData} />
+            </div>
+            <div className="news-container">
+              <News data={newsData} />
+            </div>
+          </div>
         </>
       )}
 

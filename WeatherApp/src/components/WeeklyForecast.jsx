@@ -3,7 +3,6 @@ import Day from './Day';
 
 const WeeklyForcast = ({data}) => {
   const list = data.list;
-  console.log(list);
 
   const days = list.slice(0, 6).map(day => {
     const dayName = getDayNameFromTimestamp(day.dt);

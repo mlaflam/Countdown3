@@ -2,6 +2,11 @@ import React from 'react';
 import GridItem from './GridItem';
 
 const CurrentWeather = ({ data, cityName }) => {
+    if (!data || !data.weather || !data.main || !data.sys) {
+    // If data is missing or does not have the expected structure, return null or an error message
+    return null; // Or return an error component with a message
+  }
+
   const imgId = data.weather[0].icon;
   const url = `https://openweathermap.org/img/wn/${imgId}@2x.png`;
 
@@ -31,7 +36,6 @@ const CurrentWeather = ({ data, cityName }) => {
   
   return (
     <> 
-      {/* change how city name shown  */}
       <div className='title-container'>
         <div className='title-city'>{cityName}</div>
       </div>
@@ -46,17 +50,15 @@ const CurrentWeather = ({ data, cityName }) => {
           </div>
         </div>
 
-      <div className='secondary-info'>
+        <div className='secondary-info'>
           <GridItem value={tempFahrenheitMax + "º"} label="High" />
           <GridItem value={`${humidity}%`} label="Humidity" />
           <GridItem value={sunrise} label="Sunrise" />
           <GridItem value={tempFahrenheitMin + "º"} label="Low" />
           <GridItem value={`${windSpeed}mph`} label="Wind" />
           <GridItem value={sunset} label="Sunset" />
+        </div>
       </div>
-  </div>
-
-
     </>
   );
 };
