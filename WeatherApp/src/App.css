@@ -92,12 +92,16 @@ body {
 
 .hourly-forecast-container {
   margin-top: 50px;
+  padding: 20px 10px 20px 10px;
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
   text-align: center;
+  background-color: rgb(128, 192, 241);
+  border-radius: 20px;
 }
 
 .hourly-forecast {
+  text-align: center;
   display: flex;
 }
