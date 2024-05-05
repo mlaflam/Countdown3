@@ -11,6 +11,7 @@ body {
 
   font-size: 40px;
   margin-bottom: 40px;
+  margin-top: 20px;
 }
 
 .search-container {
@@ -36,24 +37,26 @@ body {
 .info-container {
   display: flex;
   justify-content: space-between;
+  margin-right: 50px;
 }
 
 .secondary-info {
-
-    display: grid;
-    grid-template-rows: auto auto;
-    /* Two rows */
-    grid-template-columns: repeat(3, 1fr);
-    /* Three columns */
-    gap: 10px;
-    /* Gap between grid items */
-  
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   
   border-radius: 20px;
   padding: 20px;
   background-color: rgb(128, 192, 241);
   height: 160px;
   width: 500px;
+}
+
+.title-city {
+  font-size: 50px;
+  margin-left: 10px;
+  margin-top: 30px;
 }
 
 .weather-icon {
@@ -77,6 +80,10 @@ body {
   font-size: 60px;
 }
 
+.weather-type {
+  font-size: 19px;
+}
+
 
 .grid-container {
   display: flex;
@@ -93,15 +100,61 @@ body {
 .hourly-forecast-container {
   margin-top: 50px;
   padding: 20px 10px 20px 10px;
-  width: 100%;
+  width: 50%;
   overflow-x: auto;
   white-space: nowrap;
   text-align: center;
   background-color: rgb(128, 192, 241);
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom: solid;
+  /* border-color: rgb(45, 152, 233); */
+  border-color: white;
+  border-width: 3px;
 }
 
 .hourly-forecast {
   text-align: center;
   display: flex;
+}
+
+.weekly-forecast-container {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 50%;
+  padding: 40px 10px 20px 10px;
+  background-color: rgb(128, 192, 241);
+}
+
+.day-box{
+  /* padding: 20px 10px 20px 10px; */
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+.day-name {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+}
+
+.temp-min {
+  color: rgb(30, 75, 154);
+}
+
+.temp-max {
+  color: rgb(173, 36, 36);
+}
+
+.temps-box {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 20px;
 }

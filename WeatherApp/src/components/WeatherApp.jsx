@@ -48,7 +48,8 @@ const WeatherApp = () => {
       searchHourly();
       searchDaily();
     }
-  }, [location]);
+  }, [location, lat, lon]); // Add lat and lon as dependencies
+
 
   const searchWeather = async () => {
     try {
@@ -93,7 +94,7 @@ const WeatherApp = () => {
   return (
     <>
       <div className='website-title'>
-        Weather App
+        Weather and News App
       </div>
       <div className='search-container'>
         <input

@@ -33,7 +33,7 @@ const CurrentWeather = ({ data, cityName }) => {
     <> 
       {/* change how city name shown  */}
       <div className='title-container'>
-        <h1>{cityName}</h1>
+        <div className='title-city'>{cityName}</div>
       </div>
       <div className='info-container'>
         <div className='main-info'>
@@ -41,17 +41,16 @@ const CurrentWeather = ({ data, cityName }) => {
             <img src={url} alt="Weather Icon" className='weather-icon'/>
             <div className='main-temp-container'>
               <div className='main-temp'>{tempFahrenheit}º</div>
-              <div>{weatherType}
-              </div>
+              <div className='weather-type'>{weatherType} </div>
             </div>
           </div>
         </div>
 
       <div className='secondary-info'>
-          <GridItem value={tempFahrenheitMax} label="High" />
+          <GridItem value={tempFahrenheitMax + "º"} label="High" />
           <GridItem value={`${humidity}%`} label="Humidity" />
           <GridItem value={sunrise} label="Sunrise" />
-          <GridItem value={tempFahrenheitMin} label="Low" />
+          <GridItem value={tempFahrenheitMin + "º"} label="Low" />
           <GridItem value={`${windSpeed}mph`} label="Wind" />
           <GridItem value={sunset} label="Sunset" />
       </div>
