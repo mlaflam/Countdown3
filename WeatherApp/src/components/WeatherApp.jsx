@@ -4,6 +4,7 @@ import HourlyForecast from './HourlyForecast';
 import WeeklyForecast from './WeeklyForecast';
 import News from './News';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const WeatherApp = () => {
   const [location, setLocation] = useState(false);
@@ -107,33 +108,33 @@ const WeatherApp = () => {
         Weather and News App
       </div>
       <div className='search-container'>
-        <input
+        {/* <input
           id='city'
           className="city-box"
           type="text"
           placeholder="Enter City Name"
           value={cityName}
           onChange={(e) => setCityName(e.target.value)}
-        />
+        /> */}
 
-        <input
-          id='state'
-          className="state-box"
-          type="text"
-          placeholder="Enter State Code"
-          value={stateCode}
-          onChange={(e) => setStateCode(e.target.value)}
-        />
+        <div className="city-box">
+          <TextField id="city"
+            type="text" label="City Name" variant="outlined" value={cityName}
+            onChange={(e) => setCityName(e.target.value)} />
+        </div>
+        
+        <div className='state-box'>
+           <TextField id='state'
+            type="text" label="State Code" variant="outlined" value={stateCode}
+            onChange={(e) => setStateCode(e.target.value)} />
+        </div>
 
-        <input
-          id='country'
-          className="country-box"
-          type="text"
-          placeholder="Enter Country Code"
-          value={countryCode}
-          onChange={(e) => setCountryCode(e.target.value)}
-        />
-
+        <div className="country-box">
+           <TextField id='country' 
+            type="text" label="Country Code" variant="outlined" value={countryCode}
+            onChange={(e) => setCountryCode(e.target.value)} />
+        </div>
+        
         <Button variant="contained" color="success" className="search-button" onClick={handleClick}>Search</Button>
       </div>
 

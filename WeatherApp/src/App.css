@@ -21,13 +21,7 @@ body {
 }
 
 .city-box, .state-box, .country-box {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 15px;
-  padding-left: 15px;
-  font-size: 20px;
-  border-radius: 15px;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .search-button {
