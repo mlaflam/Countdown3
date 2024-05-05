@@ -15,7 +15,7 @@ const WeatherApp = () => {
   const [lon, setLon] = useState(null);
   const [placeName, setPlaceName] = useState(null);
 
-  const LOCATION_API_KEY = import.meta.env.VITE_LOCATION_API_KEY || "e4a91b2108cdc0e89d893af15a97224f";
+  const LOCATION_API_KEY = import.meta.env.VITE_LOCATION_API_KEY;
   const limit = 2;
 
   const searchLocation = async () => {
