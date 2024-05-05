@@ -3,6 +3,7 @@ import CurrentWeather from './CurrentWeather';
 import HourlyForecast from './HourlyForecast';
 import WeeklyForecast from './WeeklyForecast';
 import News from './News';
+import Button from '@mui/material/Button';
 
 const WeatherApp = () => {
   const [location, setLocation] = useState(false);
@@ -133,9 +134,7 @@ const WeatherApp = () => {
           onChange={(e) => setCountryCode(e.target.value)}
         />
 
-        <button className="search-button" onClick={handleClick}>
-          Search
-        </button>
+        <Button variant="contained" color="success" className="search-button" onClick={handleClick}>Search</Button>
       </div>
 
       {weatherData && hourlyData && dailyData && newsData &&(
