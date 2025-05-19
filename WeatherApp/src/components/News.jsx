@@ -14,7 +14,7 @@ const News = ({ data }) => {
     // Safely access media and media-metadata
     const imgUrl = story.media && story.media[0] && story.media[0]['media-metadata'] && story.media[0]['media-metadata'][0]?.url;
 
-    console.log(imgUrl);
+    // console.log(imgUrl);
 
     return (
       <Story
