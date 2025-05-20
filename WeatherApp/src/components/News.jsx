@@ -23,7 +23,7 @@ const News = ({ data }) => {
         author={storyAuthor}
         description={storyDescription}
         url={storyUrl}
-        imgUrl={imgUrl || 'https://static01.nyt.com/images/2025/05/18/multimedia/18dc-Biden/18dc-Biden-thumbStandard-v4.jpg'} // Fallback image URL
+        imgUrl={imgUrl || 'https://static.vecteezy.com/system/resources/previews/022/014/063/original/missing-picture-page-for-website-design-or-mobile-app-design-no-image-available-icon-vector.jpg'} // Fallback image URL
       />
     );
   });

@@ -1,5 +1,11 @@
+:root {
+  --primary-color: rgb(171, 219, 255);
+  --secondary-color: rgb(137, 202, 251);
+  --tertiary-color: rgb(27, 43, 106);
+}
+
 body {
-  background-color: rgb(45, 152, 233);
+  background-color: var(--primary-color);
   /* color: white; */
 }
 
@@ -40,7 +46,7 @@ body {
 .news-container {
   width: 45%;
   margin-left: 20px;
-  background-color: rgb(128, 192, 241);
+  background-color: var(--secondary-color);
   border-radius: 20px;
 }
 
@@ -58,7 +64,7 @@ body {
   
   border-radius: 20px;
   padding: 20px;
-  background-color: rgb(128, 192, 241);
+  background-color: var(--secondary-color);
   height: 160px;
   width: 500px;
 }
@@ -112,12 +118,12 @@ body {
   overflow-x: auto;
   white-space: nowrap;
   text-align: center;
-  background-color: rgb(128, 192, 241);
+  background-color: var(--secondary-color);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom: solid;
   /* border-color: rgb(45, 152, 233); */
-  border-color: rgb(27, 43, 106);
+  border-color: var(--tertiary-color);
   border-width: 3px;
 }
 
@@ -130,7 +136,7 @@ body {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   padding: 40px 10px 20px 10px;
-  background-color: rgb(128, 192, 241);
+  background-color: var(--secondary-color);
 }
 
 .day-box{

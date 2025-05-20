@@ -5,7 +5,7 @@ const Story = ({ title, author, description, url, imgUrl }) => {
   return (
     <div className='story-box'>
       <a className="story-link" href={url} target="_blank">
-        <img src={imgUrl.url} alt="News Icon" className='story-image' />
+        <img src={imgUrl} alt="News Icon" className='story-image' />
         <div>
            <div className='story-title'>{title}</div>
           <div className='story-author'>{author}</div>

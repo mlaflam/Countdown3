@@ -3,6 +3,10 @@ import Hour from './Hour';
 
 const HourlyForecast = ({ data }) => {
   const list = data.list;
+  console.log('Hourly Forecast Data:', list);
+  if (!list || list.length === 0) {
+    return <div>No hourly data available</div>;
+  }
 
   const hours = list.slice(0, 24).map(hour => {
     const time = convertUnixToTime(hour.dt);

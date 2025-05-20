@@ -3,6 +3,10 @@ import Day from './Day';
 
 const WeeklyForcast = ({data}) => {
   const list = data.list;
+  console.log('Weekly Forecast Data:', list);
+  if (!list || list.length === 0) {
+    return <div>No weekly data available</div>;
+  }
 
   const days = list.slice(0, 6).map(day => {
     const dayName = getDayNameFromTimestamp(day.dt);
